@@ -1,0 +1,18 @@
+{
+  "description": "Hello World plugin",
+  "command": "boundary-meter index.lua",
+  "icon": "icon.png",
+  "metrics": [
+    "BOUNDARY_HELLOWORLD"
+  ],
+  "paramSchema": [
+    {
+      "title": "Source",
+      "name": "source",
+      "description": "Source to be used for the measurement",
+      "type": "string",
+      "default": "",
+      "required": true
+    }
+  ]
+}

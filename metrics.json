@@ -6,6 +6,6 @@
         "displayName": "Hello World",
         "displayNameShort": "Hello World",
         "isDisabled": 0,
-        "unit": "number"
+        "unit": "percent"
     }
 }

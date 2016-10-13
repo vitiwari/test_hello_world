@@ -17,6 +17,7 @@ local math = require('math')
 local os = require('os')
 local string = require('string')
 local timer = require('timer')
+local io = require('io')
 
 -- Source of our metric
 local SOURCE = 'HelloWorld'
@@ -28,13 +29,24 @@ local POLL_INTERVAL = 5
 function poll()
 
   -- Generate random number between 0 and 99
-  local value = math.random(0, 99)
+  --local value = math.random(0, 99)
 
   -- Get the current time
-  local timestamp = os.time()
+  --local timestamp = os.time()
 
   -- Output our measurement record to standard out
-  print(string.format("%s %s %s %s", "BOUNDARY_HELLO_WORLD", value, SOURCE, timestamp))
+  
+    -- Find the top running process percent memory
+  local handle = io.popen("ps -eo pmem | sort -k 1 -nr | head -1")
+  local result = handle:read("*a")
+  handle:close()
+  result = string.gsub (result, "\n", "")
+  local result1 = string.gsub (result, "\r", "")
+  local nom = tonumber(result1)/100
+  --  result = string.gsub(result, "n", "") -- remove line breaks
+  -- Get the current time
+  local timestamp = os.time()
+  print(string.format("%s %s %s %s", "BOUNDARY_HELLO_WORLD", nom, SOURCE, timestamp))
 
 end
 
